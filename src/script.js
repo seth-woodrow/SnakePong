@@ -42,6 +42,43 @@ initializeGame();
 document.addEventListener('keydown', function(event){
     switch (event.key){
         case 'ArrowUp':
-            if(dy === 0){}
+            if(dy === 0){
+                dx = 0;
+                dy = -GRID_SIZE;
+            }
+            break;
+        case 'ArrowDown':
+            if(dy === 0){
+                dx = 0;
+                dy = GRID_SIZE;
+            }
+            break;
+        case 'ArrowLeft':
+            if(dx === 0){
+                dx = -GRID_SIZE;
+                dy = 0;
+            }
+            break;
+         case 'ArrowRight':
+            if(dx === 0){
+                dx = GRID_SIZE;
+                dy = 0;
+            }
+            break;
     }
-})
+});
+
+//genera food position that dosen't collie with the snake
+
+function generateFoodPositoin(){
+    while(true){
+        let newFoodPosition = {
+            x: Math.floor(Math.random() * canvas.width / GRID_SIZE) * GRID_SIZE,
+            y: Math.floor(Math.random() * canvas.height / GRID_SIZE) * GRID_SIZE
+        };
+
+        
+
+
+    }
+}
