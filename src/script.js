@@ -69,7 +69,6 @@ document.addEventListener('keydown', function(event){
 });
 
 //genera food position that dosen't collie with the snake
-
 function generateFoodPositoin(){
     while(true){
         let newFoodPosition = {
@@ -77,8 +76,67 @@ function generateFoodPositoin(){
             y: Math.floor(Math.random() * canvas.height / GRID_SIZE) * GRID_SIZE
         };
 
-        
+        let collisionWithSnake = false;
+        for(let segment of snake){
+        if(segment.x === newFoodPosition.x && segment.y === newFoodPosition.y){
+            collisionWithSnake = true;
+            break;
+            }
+        }
 
+        //retrun the position if ther is no collision
+        if(!collisionWithSnake){
+            return newFoodPosition;
+        }
 
     }
+}
+
+// Check fo collision with wall or self
+function checkCollision(){
+    if(snake[0].x < 0 || snake[x].x >=canvas.width || snake[0].y < 0 || snake[0].y >= canvas.height){
+        return true;
+    }
+    for(let i = 0; i < snake.length; i++){
+        if(snake[i].x === snake[0].x & snake[i].y === snake[0].y){
+            return true;
+        }
+    }
+    return false;
+}
+
+// main game update function
+function update(){
+    if(gamePaused) return;
+
+    //calculate new snake head position
+    const head = { x: sanke[0].x + dx, y: sanke[0].y + dy};
+    snake.unshift(head);
+
+    //Check for collisions
+    if(checkCollision()){
+        if(score > highScore){
+            highScore = score;
+            localStorage.setItem('highScore', highScore);
+            highScoreElem.textContent = highScore;
+        }
+        gameOver();
+        return;
+    }
+
+    // check fo sanke eating food
+    if(head.x === food.x && head.y === food.y){
+        score++;
+        currentScoreElem.textContent = score
+        food = {
+            ...generateFoodPositoin(),
+            dx:(Math.random()< 0.5 ? 1 : -1) * GRID_SIZE,
+            dy: (Math.random() < 0.5 ?1 : -1) * GRID_SIZE
+        };
+
+        // check fo win condition(snake fills entire screen)
+        
+    }
+
+
 }
