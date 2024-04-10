@@ -135,8 +135,18 @@ function update(){
         };
 
         // check fo win condition(snake fills entire screen)
-        
+        if(snake.length === (canvas.width / GRID_SIZE) * (canvas.height / GRID_SIZE)){
+            gameWin();
+            return;
+        }
+    }else{
+            snake.pop(); //removes tail segment
     }
 
+    //update food position
+    if(blinkCounter % 4 === 0){
+        food.x += food.dx;
+        food.y += food.dy;
+    }
 
 }
