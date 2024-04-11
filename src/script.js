@@ -147,6 +147,47 @@ function update(){
     if(blinkCounter % 4 === 0){
         food.x += food.dx;
         food.y += food.dy;
+
+         // handle food collisins with wall
+    if(food.x < 0){
+        food.dx = -food.dx;
+        food.x = 0;
+    }
+    if(food.x >= canvas.width){
+        food.dx = -food.dx;
+        food.x = canvas.width - GRID_SIZE;
+    }
+     if(food.y < 0){
+        food.dy = -food.dy;
+        food.y = 0;
+     }
+     if(food.y >= canvas.height){
+        food.dy = -food.dy;
+        food.y = canvas.height-GRID_SIZE;
+     }
     }
 
+    blinkCounter++;
+    draw();
 }
+
+//draw the background grid
+function drawGrid(){
+    context.strokeStyle = "#AAA";
+    for(let i = 0; i < canvas.width; i += GRID_SIZE){
+        context.beginPath();
+        context.moveTo(i, 0);
+        context. lineTo(i, canvas.height);
+        context.stroke();
+    }
+    for(let j = 0; j < canvas.height; j += GRID_SIZE){
+        context.beginPath();
+        context.moveTo(j, 0);
+        context. lineTo(canvas.height, j);
+        context.stroke();
+    }
+}
+
+//draw game objects( snake and food)
+function draw();
+context.clearRect(0, 0, canvas.width, canvas.height)
