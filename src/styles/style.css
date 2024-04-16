@@ -1,12 +1,12 @@
-/* find good font for game */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wgt@300;400;500;600;700&display=swap');
 
 
 body{
-    display:flex;
-    flex-direction:column;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    height:100 vh;
+    height: 100vh;
     background-color: #333;
     color: #fff;
     overflow: hidden;
@@ -28,7 +28,7 @@ canvas{
     margin-top: 15px;
     padding: 10px 15px;
     background-color: #f4f4f4;
-    border: none;
+    border: flex;
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -37,11 +37,11 @@ canvas{
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translare(-50%, -50%);
+    transform: translate(-50%, -50%);
     padding: 20px;
     color: #fff;
     display: none;
     flex-direction: column;
     align-items: center;
-    justify-content:center
+    justify-content: center
 }
